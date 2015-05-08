@@ -47,26 +47,23 @@ namespace FuzzyString
 
         public static List<string> ListNGrams(this string source, int n)
         {
-            List<string> ngrams = new List<string>();
-
             if (n > source.Length)
             {
                 return new List<string>();
             }
-            else if (n == source.Length)
+            
+            if (n == source.Length)
             {
-                ngrams.Add(source);
-                return ngrams;
+                return new List<string> {source};
             }
-            else
-            {
-                for (int i = 0; i < source.Length - n; i++)
-                {
-                    ngrams.Add(source.Substring(i, i + n));
-                }
 
-                return ngrams;
+            var ngrams = new List<string>();
+            for (int i = 0; i < source.Length - n + 1; i++)
+            {
+                ngrams.Add(source.Substring(i, n));
             }
+
+            return ngrams;
         }
     }
 }
