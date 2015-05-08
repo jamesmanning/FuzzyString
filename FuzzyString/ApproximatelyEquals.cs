@@ -7,10 +7,29 @@ using System.Threading.Tasks;
 namespace FuzzyString
 {
     public static partial class ComparisonMetrics
-    { 
+    {
         public static bool ApproximatelyEquals(this string source, string target, List<FuzzyStringComparisonOptions> options, FuzzyStringComparisonTolerance tolerance)
         {
-            List<double> comparisonResults = new List<double>();
+            var comparisonAverage = CalculateComparisonAverage(source, target, options);
+
+            switch (tolerance)
+            {
+                case FuzzyStringComparisonTolerance.Strong:
+                    return comparisonAverage < 0.25;
+                case FuzzyStringComparisonTolerance.Normal:
+                    return comparisonAverage < 0.5;
+                case FuzzyStringComparisonTolerance.Weak:
+                    return comparisonAverage < 0.75;
+                case FuzzyStringComparisonTolerance.Manual:
+                    return comparisonAverage > 0.6;
+                default:
+                    return false;
+            }
+        }
+
+        public static double CalculateComparisonAverage(this string source, string target, List<FuzzyStringComparisonOptions> options)
+        {
+            var comparisonResults = new List<double>();
 
             if (!options.Contains(FuzzyStringComparisonOptions.CaseSensitive))
             {
@@ -91,54 +110,7 @@ namespace FuzzyString
                 comparisonResults.Add(1 - source.RatcliffObershelpSimilarity(target));
             }
 
-            if (tolerance == FuzzyStringComparisonTolerance.Strong)
-            {
-                if (comparisonResults.Average() < 0.25)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if (tolerance == FuzzyStringComparisonTolerance.Normal)
-            {
-                if (comparisonResults.Average() < 0.5)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if (tolerance == FuzzyStringComparisonTolerance.Weak)
-            {
-                if (comparisonResults.Average() < 0.75)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if (tolerance == FuzzyStringComparisonTolerance.Manual)
-            {
-                if (comparisonResults.Average() > 0.6)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            return comparisonResults.Average();
         }
     }
 }
