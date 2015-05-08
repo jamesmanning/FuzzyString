@@ -27,13 +27,7 @@ namespace FuzzyString
 
         public static string MergeIndividualElementsIntoString(IEnumerable<string> source)
         {
-            string returnString = "";
-
-            for (int i = 0; i < source.Count(); i++)
-            {
-                returnString += source.ElementAt<string>(i);
-            }
-            return returnString;
+            return String.Join("", source);
         }
 
         public static List<string> ListPrefixes(this string source)
