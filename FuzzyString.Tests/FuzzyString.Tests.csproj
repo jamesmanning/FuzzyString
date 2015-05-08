@@ -57,6 +57,7 @@
     <Compile Include="ListNGramsTests.cs" />
     <Compile Include="HammingDistanceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplitIntoIndividualElementsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FuzzyString\FuzzyString.csproj">
