@@ -23,7 +23,7 @@ namespace FuzzyString
             {
                 if (source.Length == target.Length)
                 {
-                    comparisonResults.Add(source.HammingDistance(target) / target.Length);
+                    comparisonResults.Add((double)source.HammingDistance(target)/target.Length);
                 }
             }
 
