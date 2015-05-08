@@ -32,7 +32,7 @@ namespace FuzzyString
 
         public static List<string> ListPrefixes(this string source)
         {
-            return source.Select((t, i) => source.Substring(0, i)).ToList();
+            return source.Select((t, i) => source.Substring(0, i+1)).ToList();
         }
 
         public static List<string> ListBigrams(this string source)
