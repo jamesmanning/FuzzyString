@@ -44,26 +44,12 @@ namespace FuzzyString
 
         public static List<string> ListBigrams(this string source)
         {
-            List<string> bigrams = new List<string>();
-
-            for (int i = 0; i < source.Length - 1; i++)
-            {
-                bigrams.Add(source.Substring(i, i + 1));
-            }
-
-            return bigrams;
+            return ListNGrams(source, 2);
         }
 
         public static List<string> ListTriGrams(this string source)
         {
-            List<string> trigrams = new List<string>();
-
-            for (int i = 0; i < source.Length - 2; i++)
-            {
-                trigrams.Add(source.Substring(i, i + 2));
-            }
-
-            return trigrams;
+            return ListNGrams(source, 3);
         }
 
         public static List<string> ListNGrams(this string source, int n)
