@@ -41,5 +41,12 @@ namespace FuzzyString.Tests
             var result = "1234".ListTriGrams();
             CollectionAssert.AreEqual(new[] { "123", "234" }, result);
         }
+
+        [TestMethod]
+        public void WhenSourceIsFiveCharacters_ReturnsThreeGrams()
+        {
+            var result = "12345".ListTriGrams();
+            CollectionAssert.AreEqual(new[] { "123", "234", "345" }, result);
+        }
     }
 }
