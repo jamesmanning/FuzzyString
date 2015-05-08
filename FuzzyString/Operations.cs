@@ -51,7 +51,7 @@ namespace FuzzyString
 
             if (n > source.Length)
             {
-                return null;
+                return new List<string>();
             }
             else if (n == source.Length)
             {
