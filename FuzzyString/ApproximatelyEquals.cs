@@ -110,6 +110,12 @@ namespace FuzzyString
                 comparisonResults.Add(1 - source.RatcliffObershelpSimilarity(target));
             }
 
+            // Min: 0    Max: 1
+            if (options.Contains(FuzzyStringComparisonOptions.UseTanimotoCoefficient))
+            {
+                comparisonResults.Add(1 - source.TanimotoCoefficient(target));
+            }
+
             return comparisonResults.Average();
         }
     }
