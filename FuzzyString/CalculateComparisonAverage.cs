@@ -21,10 +21,7 @@ namespace FuzzyString
             // Min: 0    Max: source.Length = target.Length
             if (options.Contains(FuzzyStringComparisonOptions.UseHammingDistance))
             {
-                if (source.Length == target.Length)
-                {
-                    comparisonResults.Add((double)source.HammingDistance(target)/target.Length);
-                }
+                comparisonResults.Add(Convert.ToDouble(source.HammingDistance(target)) / Convert.ToDouble(target.Length));
             }
 
             // Min: 0    Max: 1
@@ -55,8 +52,16 @@ namespace FuzzyString
             }
             else if (options.Contains(FuzzyStringComparisonOptions.UseLevenshteinDistance))
             {
-                comparisonResults.Add(Convert.ToDouble(source.LevenshteinDistance(target))/
-                                      Convert.ToDouble(source.LevenshteinDistanceUpperBounds(target)));
+                var upperBound = source.LevenshteinDistanceUpperBounds(target);
+                if (upperBound == 0)
+                {
+                    comparisonResults.Add(0);
+                }
+                else
+                {
+                    comparisonResults.Add(Convert.ToDouble(source.LevenshteinDistance(target)) /
+                                          Convert.ToDouble(upperBound));
+                }
             }
 
             if (options.Contains(FuzzyStringComparisonOptions.UseLongestCommonSubsequence))

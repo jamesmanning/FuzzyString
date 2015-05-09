@@ -32,14 +32,11 @@ namespace FuzzyString
 
         public static int LevenshteinDistanceUpperBounds(this string source, string target)
         {
-            // If the two strings are the same length then the Hamming Distance is the upper bounds of the Levenshtien Distance.
+            // If the two strings are the same length then the Hamming Distance is the upper bounds of the Levenshtein Distance.
             if (source.Length == target.Length) { return source.HammingDistance(target); }
 
             // Otherwise, the upper bound is the length of the longer string.
-            else if (source.Length > target.Length) { return source.Length; }
-            else if (target.Length > source.Length) { return target.Length; }
-
-            return 9999;
+            return Math.Max(source.Length, target.Length);
         }
 
         public static int LevenshteinDistanceLowerBounds(this string source, string target)

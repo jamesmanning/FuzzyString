@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="xunit">
       <HintPath>..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
@@ -55,14 +56,15 @@
   <ItemGroup>
     <Compile Include="CalculateComparisonAverageTests.cs" />
     <Compile Include="ApproximatelyEqualTests.cs" />
+    <Compile Include="LongestCommonSubstringTests.cs" />
     <Compile Include="ListTriGramsTests.cs" />
     <Compile Include="ListBigramsTests.cs" />
     <Compile Include="ListPrefixesTests.cs" />
     <Compile Include="ListNGramsTests.cs" />
-    <Compile Include="HammingDistanceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplitIntoIndividualElementsTests.cs" />
     <Compile Include="MergeIndividualElementsIntoStringTests.cs" />
+    <Compile Include="JaroWinklerDistanceWithPrefixScaleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FuzzyString\FuzzyString.csproj">

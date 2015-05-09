@@ -10,6 +10,51 @@ namespace FuzzyString.Tests
     public class CalculateComparisonAverageTests
     {
         [Fact]
+        public void WhenMatchingStrings_AndMultipleOptions_ShouldReturnExpectedValue()
+        {
+            const string kevin = "kevin";
+
+            var options = new List<FuzzyStringComparisonOptions>
+            {
+                FuzzyStringComparisonOptions.UseJaccardDistance,
+                FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance,
+                FuzzyStringComparisonOptions.UseOverlapCoefficient,
+                FuzzyStringComparisonOptions.UseLongestCommonSubsequence,
+                FuzzyStringComparisonOptions.CaseSensitive,
+            };
+
+            var result = kevin.CalculateComparisonAverage(kevin, options);
+            Assert.Equal(0, result);
+        }
+
+        [Theory]
+        [InlineData(FuzzyStringComparisonOptions.UseHammingDistance,               0.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseJaccardDistance,               0.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseJaroDistance,                  1.0)] // TODO: this seems broken
+        [InlineData(FuzzyStringComparisonOptions.UseJaroWinklerDistance,           1.0)] // TODO: this seems broken
+        [InlineData(FuzzyStringComparisonOptions.UseLevenshteinDistance,           0.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseLongestCommonSubsequence,      0.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseLongestCommonSubstring,        0.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance, 0.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseOverlapCoefficient,            0.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseRatcliffObershelpSimilarity,   0.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseSorensenDiceDistance,          0.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseTanimotoCoefficient,           0.0)]
+        public void WhenMatchingStrings_AndSingleComparisonOption_ShouldReturnExpectedValue(
+            FuzzyStringComparisonOptions fuzzyStringComparisonOption, double expectedValue)
+        {
+            const string kevin = "kevin";
+
+            var options = new List<FuzzyStringComparisonOptions>
+            {
+                fuzzyStringComparisonOption,
+            };
+
+            var result = kevin.CalculateComparisonAverage(kevin, options);
+            Assert.Equal(expectedValue, result);
+        }
+
+        [Fact]
         public void WhenSimilarString_AndMultipleOptions_ShouldReturnExpectedValue()
         {
             const string kevin = "kevin";
@@ -24,7 +69,8 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.CaseSensitive,
             };
 
-            Assert.Equal(0.23333333333333334, kevin.CalculateComparisonAverage(kevyn, options));
+            var result = kevin.CalculateComparisonAverage(kevyn, options);
+            Assert.Equal(0.23333333333333334, result);
         }
 
         [Theory]
@@ -52,6 +98,53 @@ namespace FuzzyString.Tests
             };
 
             var result = kevin.CalculateComparisonAverage(kevyn, options);
+            Assert.Equal(expectedValue, result);
+        }
+
+        [Fact]
+        public void WhenDifferentString_AndMultipleOptions_ShouldReturnExpectedValue()
+        {
+            const string kevin = "kevin";
+            const string abcxyz123 = "abcxyz123";
+
+            var options = new List<FuzzyStringComparisonOptions>
+            {
+                FuzzyStringComparisonOptions.UseJaccardDistance,
+                FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance,
+                FuzzyStringComparisonOptions.UseOverlapCoefficient,
+                FuzzyStringComparisonOptions.UseLongestCommonSubsequence,
+                FuzzyStringComparisonOptions.CaseSensitive,
+            };
+
+            var result = kevin.CalculateComparisonAverage(abcxyz123, options);
+            Assert.Equal(1.0, result);
+        }
+
+        [Theory]
+        [InlineData(FuzzyStringComparisonOptions.UseHammingDistance,               1.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseJaccardDistance,               1.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseJaroDistance,                  0.0)] // TODO: this seems broken
+        [InlineData(FuzzyStringComparisonOptions.UseJaroWinklerDistance,           0.0)] // TODO: this seems broken
+        [InlineData(FuzzyStringComparisonOptions.UseLevenshteinDistance,           1.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseLongestCommonSubsequence,      1.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseLongestCommonSubstring,        1.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance, 1.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseOverlapCoefficient,            1.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseRatcliffObershelpSimilarity,   1.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseSorensenDiceDistance,          1.0)]
+        [InlineData(FuzzyStringComparisonOptions.UseTanimotoCoefficient,           1.0)]
+        public void WhenDifferentString_AndSingleComparisonOption_ShouldReturnExpectedValue(
+            FuzzyStringComparisonOptions fuzzyStringComparisonOption, double expectedValue)
+        {
+            const string kevin = "kevin";
+            const string abcxyz123 = "abcxyz123";
+
+            var options = new List<FuzzyStringComparisonOptions>
+            {
+                fuzzyStringComparisonOption,
+            };
+
+            var result = kevin.CalculateComparisonAverage(abcxyz123, options);
             Assert.Equal(expectedValue, result);
         }
     }

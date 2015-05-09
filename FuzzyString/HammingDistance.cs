@@ -12,18 +12,19 @@ namespace FuzzyString
         {
             int distance = 0;
 
-            if (source.Length == target.Length)
+            if (source.Length != target.Length)
             {
-                for (int i = 0; i < source.Length; i++)
-                {
-                    if (!source[i].Equals(target[i]))
-                    {
-                        distance++;
-                    }
-                }
-                return distance;
+                return Math.Max(source.Length, target.Length);
             }
-            else { return 99999; }
+
+            for (int i = 0; i < source.Length; i++)
+            {
+                if (!source[i].Equals(target[i]))
+                {
+                    distance++;
+                }
+            }
+            return distance;
         }
     }
 }
