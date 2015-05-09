@@ -1,13 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using System.Collections.Generic;
+using Xunit;
 
 namespace FuzzyString.Tests
 {
-    [TestClass]
+
     public class ApproximatelyEqualTests
     {
-        [TestMethod]
+        [Fact]
         public void WhenSimilarString_ShouldReturnTrueForWeakAndNormalAndStrong()
         {
             const string kevin = "kevin";
@@ -22,12 +23,12 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.CaseSensitive,
             };
 
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSimilarString_ShouldReturnFalseForManual()
         {
             const string kevin = "kevin";
@@ -42,10 +43,10 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.CaseSensitive
             };
 
-            Assert.IsFalse(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Manual));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Manual));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSimilarString_ShouldReturnFalseForInvalidFuzzyStringComparisonTolerance()
         {
             const string kevin = "kevin";
@@ -60,10 +61,10 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.CaseSensitive
             };
 
-            Assert.IsFalse(kevin.ApproximatelyEquals(kevyn, options, (FuzzyStringComparisonTolerance)999));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, options, (FuzzyStringComparisonTolerance)999));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSimilarString_ShouldReturnTrueForJaroDistanceAndWeakAndNormal_FalseForStrong()
         {
             const string kevin = "kevin";
@@ -74,12 +75,12 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.UseJaroDistance,
             };
 
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
-            Assert.IsFalse(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSimilarString_ShouldReturnTrueForJaroWinklerDistanceAndWeak_FalseForNormalAndStrong()
         {
             const string kevin = "kevin";
@@ -90,12 +91,12 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.UseJaroWinklerDistance,
             };
 
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
-            Assert.IsFalse(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
-            Assert.IsFalse(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSimilarString_ShouldReturnFalseForLevenshteinDistanceAndWeakAndNormalAndStrong()
         {
             const string kevin = "kevin";
@@ -106,12 +107,12 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.UseLevenshteinDistance,
             };
 
-            Assert.IsFalse(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
-            Assert.IsFalse(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
-            Assert.IsFalse(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSimilarString_ShouldReturnTrueForLongestCommonSubstringAndAndWeakAndNormal_FalseForStrong()
         {
             const string kevin = "kevin";
@@ -122,12 +123,12 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.UseLongestCommonSubstring,
             };
 
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
-            Assert.IsFalse(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSimilarString_ShouldReturnTrueForSorensenDiceDistanceAndWeakAndNormalAndStrong()
         {
             const string kevin = "kevin";
@@ -138,12 +139,12 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.UseSorensenDiceDistance,
             };
 
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSimilarString_ShouldReturnTrueForRatcliffObershelpSimilarityAndWeakAndNormalAndStrong()
         {
             const string kevin = "kevin";
@@ -154,9 +155,9 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.UseRatcliffObershelpSimilarity,
             };
 
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
-            Assert.IsTrue(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
         }
     }
 }

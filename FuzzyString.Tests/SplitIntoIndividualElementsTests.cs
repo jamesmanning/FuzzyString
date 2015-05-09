@@ -1,30 +1,31 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Xunit;
 
 namespace FuzzyString.Tests
 {
-    [TestClass]
+
     public class SplitIntoIndividualElementsTests
     {
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsEmpty_ShouldReturnEmptyArray()
         {
             var result = Operations.SplitIntoIndividualElements("");
-            Assert.AreEqual(0, result.Length);
+            Assert.Equal(0, result.Length);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsOneCharacter_ShouldReturnArrayWithOneString()
         {
             var result = Operations.SplitIntoIndividualElements("1");
-            CollectionAssert.AreEqual(new[] { "1" }, result);
+            Assert.Equal(new[] { "1" }, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsFiveCharacters_ShouldReturnArrayWithFiveStrings()
         {
             var result = Operations.SplitIntoIndividualElements("12345");
-            CollectionAssert.AreEqual(new[] { "1", "2", "3", "4", "5" }, result);
+            Assert.Equal(new[] { "1", "2", "3", "4", "5" }, result);
         }
     }
 }

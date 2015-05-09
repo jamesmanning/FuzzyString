@@ -1,52 +1,53 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using System.Collections.Generic;
+using Xunit;
 
 namespace FuzzyString.Tests
 {
-    [TestClass]
+
     public class ListTriGramsTests
     {
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsEmptyString_ReturnsEmptyList()
         {
             var result = "".ListTriGrams();
-            Assert.AreEqual(0, result.Count);
+            Assert.Equal(0, result.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsOneCharacter_ReturnsEmptyList()
         {
             var result = "1".ListTriGrams();
-            Assert.AreEqual(0, result.Count);
+            Assert.Equal(0, result.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsTwoCharacters_ReturnsEmptyList()
         {
             var result = "12".ListTriGrams();
-            Assert.AreEqual(0, result.Count);
+            Assert.Equal(0, result.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsThreeCharacters_ReturnsSource()
         {
             var result = "123".ListTriGrams();
-            CollectionAssert.AreEqual(new[] { "123" }, result);
+            Assert.Equal(new[] { "123" }, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsFourCharacters_ReturnsTwoGrams()
         {
             var result = "1234".ListTriGrams();
-            CollectionAssert.AreEqual(new[] { "123", "234" }, result);
+            Assert.Equal(new[] { "123", "234" }, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsFiveCharacters_ReturnsThreeGrams()
         {
             var result = "12345".ListTriGrams();
-            CollectionAssert.AreEqual(new[] { "123", "234", "345" }, result);
+            Assert.Equal(new[] { "123", "234", "345" }, result);
         }
     }
 }

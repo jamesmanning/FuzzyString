@@ -1,45 +1,46 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using System.Collections.Generic;
+using Xunit;
 
 namespace FuzzyString.Tests
 {
-    [TestClass]
+
     public class ListBigramsTests
     {
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsEmptyString_ReturnsEmptyList()
         {
             var result = "".ListBigrams();
-            Assert.AreEqual(0, result.Count);
+            Assert.Equal(0, result.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsOneCharacter_ReturnsEmptyList()
         {
             var result = "1".ListBigrams();
-            Assert.AreEqual(0, result.Count);
+            Assert.Equal(0, result.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsTwoCharacters_ReturnsSource()
         {
             var result = "12".ListBigrams();
-            CollectionAssert.AreEqual(new[] { "12" }, result);
+            Assert.Equal(new[] { "12" }, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsThreeCharacters_ReturnsTwoGrams()
         {
             var result = "123".ListBigrams();
-            CollectionAssert.AreEqual(new[] { "12", "23" }, result);
+            Assert.Equal(new[] { "12", "23" }, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenSourceIsFourCharacters_ReturnsThreeGrams()
         {
             var result = "1234".ListBigrams();
-            CollectionAssert.AreEqual(new[] { "12", "23", "34" }, result);
+            Assert.Equal(new[] { "12", "23", "34" }, result);
         }
     }
 }
