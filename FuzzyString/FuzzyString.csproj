@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculateComparisonAverage.cs" />
     <Compile Include="ApproximatelyEquals.cs" />
     <Compile Include="FuzzyStringComparisonOptions.cs" />
     <Compile Include="FuzzyStringComparisonTolerance.cs" />
