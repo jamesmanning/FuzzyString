@@ -1,8 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xunit;
-using Xunit.Extensions;
-using Assert = Xunit.Assert;
+﻿using Xunit;
 
 namespace FuzzyString.Tests
 {
@@ -28,7 +24,7 @@ namespace FuzzyString.Tests
             const string kevyn = "kevyn";
 
             var result = ComparisonMetrics.JaroWinklerDistanceWithPrefixScale(kevin, kevyn, pValue);
-            Assert.Equal(expectedValue, result);
+            Assert.Equal(expectedValue, result, 15);
         }
 
         [Theory]

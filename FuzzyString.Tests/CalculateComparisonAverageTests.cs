@@ -98,7 +98,7 @@ namespace FuzzyString.Tests
             };
 
             var result = kevin.CalculateComparisonAverage(kevyn, options);
-            Assert.Equal(expectedValue, result);
+            Assert.Equal(expectedValue, result, 15);
         }
 
         [Fact]
