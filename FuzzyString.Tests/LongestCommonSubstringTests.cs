@@ -15,6 +15,18 @@ namespace FuzzyString.Tests
         }
 
         [Theory]
+        [InlineData(0, 1.0)]
+        [InlineData(0.1, 1.0)]
+        [InlineData(0.25, 1.0)]
+        public void WhenSameStrings_ShouldReturnExpectedValue(double pValue, double expectedValue)
+        {
+            const string kevin = "kevin";
+
+            var result = ComparisonMetrics.JaroWinklerDistanceWithPrefixScale(kevin, kevin, pValue);
+            Assert.Equal(expectedValue, result, 15);
+        }
+
+        [Theory]
         [InlineData(0, 0.33333333333333331)]
         [InlineData(0.1, 0.53333333333333333)]
         [InlineData(0.25, 0.83333333333333326)]
