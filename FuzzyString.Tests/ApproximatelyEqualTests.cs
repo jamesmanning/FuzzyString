@@ -10,6 +10,16 @@ namespace FuzzyString.Tests
     public class ApproximatelyEqualTests
     {
         [Fact]
+        public void WhenNoTestsChosen_ShouldReturnFalse()
+        {
+            const string kevin = "kevin";
+
+            var options = new List<FuzzyStringComparisonOptions>();
+
+            Assert.False(kevin.ApproximatelyEquals(kevin, options));
+        }
+
+        [Fact]
         public void WhenSimilarString_AndMultipleComparisonOptions_ShouldReturnTrueForWeakAndNormalAndStrong()
         {
             const string kevin = "kevin";

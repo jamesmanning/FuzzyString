@@ -10,6 +10,17 @@ namespace FuzzyString.Tests
     public class CalculateComparisonAverageTests
     {
         [Fact]
+        public void WhenNoTestsChosen_ShouldReturnOne()
+        {
+            const string kevin = "kevin";
+
+            var options = new List<FuzzyStringComparisonOptions>();
+
+            var result = kevin.CalculateComparisonAverage(kevin, options);
+            Assert.Equal(1, result);
+        }
+
+        [Fact]
         public void WhenMatchingStrings_AndMultipleOptions_ShouldReturnExpectedValue()
         {
             const string kevin = "kevin";

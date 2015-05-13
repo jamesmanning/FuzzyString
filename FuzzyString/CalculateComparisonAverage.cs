@@ -102,6 +102,12 @@ namespace FuzzyString
                 comparisonResults.Add(1 - source.TanimotoCoefficient(target));
             }
 
+            // with no tests chosen, default to saying the strings are different via a 1.0 score
+            if (comparisonResults.Count == 0)
+            {
+                return 1.0;
+            }
+
             return comparisonResults.Average();
         }
     }
