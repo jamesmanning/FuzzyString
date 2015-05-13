@@ -8,7 +8,7 @@ namespace FuzzyString
 {
     public static partial class ComparisonMetrics
     {
-        public static double CalculateComparisonAverage(this string source, string target, List<FuzzyStringComparisonOptions> options)
+        public static double CalculateComparisonAverage(this string source, string target, params FuzzyStringComparisonOptions[] options)
         {
             var comparisonResults = new List<double>();
 

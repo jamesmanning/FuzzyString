@@ -14,9 +14,9 @@ namespace FuzzyString.Tests
         {
             const string kevin = "kevin";
 
-            var options = new List<FuzzyStringComparisonOptions>();
+            var options = new FuzzyStringComparisonOptions[0];
 
-            Assert.False(kevin.ApproximatelyEquals(kevin, options));
+            Assert.False(kevin.ApproximatelyEquals(kevin, FuzzyStringComparisonTolerance.Weak, options));
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace FuzzyString.Tests
             const string kevin = "kevin";
             const string kevyn = "kevyn";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 FuzzyStringComparisonOptions.UseJaccardDistance,
                 FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance,
@@ -34,9 +34,9 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.CaseSensitive,
             };
 
-            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Weak));
-            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Normal));
-            Assert.True(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Strong));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, FuzzyStringComparisonTolerance.Weak, options));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, FuzzyStringComparisonTolerance.Normal, options));
+            Assert.True(kevin.ApproximatelyEquals(kevyn, FuzzyStringComparisonTolerance.Strong, options));
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace FuzzyString.Tests
             const string kevin = "kevin";
             const string kevyn = "kevyn";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 FuzzyStringComparisonOptions.UseJaccardDistance,
                 FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance,
@@ -54,7 +54,7 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.CaseSensitive
             };
 
-            Assert.False(kevin.ApproximatelyEquals(kevyn, options, FuzzyStringComparisonTolerance.Manual));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, FuzzyStringComparisonTolerance.Manual, options));
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace FuzzyString.Tests
             const string kevin = "kevin";
             const string kevyn = "kevyn";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 FuzzyStringComparisonOptions.UseJaccardDistance,
                 FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance,
@@ -72,7 +72,7 @@ namespace FuzzyString.Tests
                 FuzzyStringComparisonOptions.CaseSensitive
             };
 
-            Assert.False(kevin.ApproximatelyEquals(kevyn, options, (FuzzyStringComparisonTolerance)999));
+            Assert.False(kevin.ApproximatelyEquals(kevyn, (FuzzyStringComparisonTolerance)999, options));
         }
 
         [Theory]
@@ -128,12 +128,12 @@ namespace FuzzyString.Tests
             const string kevin = "kevin";
             const string kevyn = "kevyn";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 fuzzyStringComparisonOption,
             };
 
-            var result = kevin.ApproximatelyEquals(kevyn, options, fuzzyStringComparisonTolerance);
+            var result = kevin.ApproximatelyEquals(kevyn, fuzzyStringComparisonTolerance, options);
             Assert.Equal(expectedValue, result);
         }
     }

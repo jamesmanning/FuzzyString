@@ -8,7 +8,7 @@ namespace FuzzyString
 {
     public static partial class ComparisonMetrics
     {
-        public static bool ApproximatelyEquals(this string source, string target, List<FuzzyStringComparisonOptions> options, FuzzyStringComparisonTolerance tolerance)
+        public static bool ApproximatelyEquals(this string source, string target, FuzzyStringComparisonTolerance tolerance, params FuzzyStringComparisonOptions[] options)
         {
             var comparisonAverage = CalculateComparisonAverage(source, target, options);
 

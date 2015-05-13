@@ -14,7 +14,7 @@ namespace FuzzyString.Tests
         {
             const string kevin = "kevin";
 
-            var options = new List<FuzzyStringComparisonOptions>();
+            var options = new FuzzyStringComparisonOptions[0];
 
             var result = kevin.CalculateComparisonAverage(kevin, options);
             Assert.Equal(1, result);
@@ -25,7 +25,7 @@ namespace FuzzyString.Tests
         {
             const string kevin = "kevin";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 FuzzyStringComparisonOptions.UseJaccardDistance,
                 FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance,
@@ -56,7 +56,7 @@ namespace FuzzyString.Tests
         {
             const string kevin = "kevin";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 fuzzyStringComparisonOption,
             };
@@ -71,7 +71,7 @@ namespace FuzzyString.Tests
             const string kevin = "kevin";
             const string kevyn = "kevyn";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 FuzzyStringComparisonOptions.UseJaccardDistance,
                 FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance,
@@ -103,7 +103,7 @@ namespace FuzzyString.Tests
             const string kevin = "kevin";
             const string kevyn = "kevyn";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 fuzzyStringComparisonOption,
             };
@@ -118,7 +118,7 @@ namespace FuzzyString.Tests
             const string kevin = "kevin";
             const string abcxyz123 = "abcxyz123";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 FuzzyStringComparisonOptions.UseJaccardDistance,
                 FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance,
@@ -150,7 +150,7 @@ namespace FuzzyString.Tests
             const string kevin = "kevin";
             const string abcxyz123 = "abcxyz123";
 
-            var options = new List<FuzzyStringComparisonOptions>
+            var options = new[]
             {
                 fuzzyStringComparisonOption,
             };
