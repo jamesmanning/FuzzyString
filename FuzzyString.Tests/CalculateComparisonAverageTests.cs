@@ -158,5 +158,28 @@ namespace FuzzyString.Tests
             var result = kevin.CalculateComparisonAverage(abcxyz123, options);
             Assert.Equal(expectedValue, result);
         }
+
+        //[Theory]
+        ////[InlineData(FuzzyStringComparisonOptions.UseHammingDistance,               1.0)]
+        ////[InlineData(FuzzyStringComparisonOptions.UseJaccardDistance,               1.0)]
+        ////[InlineData(FuzzyStringComparisonOptions.UseJaroDistance,                  0.0)] // TODO: this seems broken
+        ////[InlineData(FuzzyStringComparisonOptions.UseJaroWinklerDistance,           0.0)] // TODO: this seems broken
+        //[InlineData(FuzzyStringComparisonOptions.UseLevenshteinDistance,           1.0)]
+        ////[InlineData(FuzzyStringComparisonOptions.UseLongestCommonSubsequence,      1.0)]
+        ////[InlineData(FuzzyStringComparisonOptions.UseLongestCommonSubstring,        1.0)]
+        //[InlineData(FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance, 1.0)]
+        ////[InlineData(FuzzyStringComparisonOptions.UseOverlapCoefficient,            1.0)]
+        ////[InlineData(FuzzyStringComparisonOptions.UseRatcliffObershelpSimilarity,   1.0)]
+        ////[InlineData(FuzzyStringComparisonOptions.UseSorensenDiceDistance,          1.0)]
+        ////[InlineData(FuzzyStringComparisonOptions.UseTanimotoCoefficient,           1.0)]
+        //public void WhenOneStringIsSubstringOfTheOther_AndSingleComparisonOption_ShouldReturnExpectedValue(
+        //    FuzzyStringComparisonOptions fuzzyStringComparisonOption, double expectedValue)
+        //{
+        //    const string input1 = "Freeman Toyota";
+        //    const string input2 = "Freeman Toyota Scion";
+
+        //    var result = input1.CalculateComparisonAverage(input2, fuzzyStringComparisonOption);
+        //    Assert.Equal(expectedValue, result);
+        //}
     }
 }
