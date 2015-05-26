@@ -30,9 +30,11 @@ namespace FuzzyString
                 distance = 1;
             }
 
-            return Math.Min(Math.Min(LevenshteinDistance(source.Substring(0, source.Length - 1), target) + 1,
-                                     LevenshteinDistance(source, target.Substring(0, target.Length - 1))) + 1,
-                                     LevenshteinDistance(source.Substring(0, source.Length - 1), target.Substring(0, target.Length - 1)) + distance);
+            var sourceWithLastCharacterRemoved = source.Substring(0, source.Length - 1);
+            var targetWithLastCharacterRemoved = target.Substring(0, target.Length - 1);
+            return Math.Min(Math.Min(LevenshteinDistance(sourceWithLastCharacterRemoved, target) + 1,
+                                     LevenshteinDistance(source, targetWithLastCharacterRemoved)) + 1,
+                                     LevenshteinDistance(sourceWithLastCharacterRemoved, targetWithLastCharacterRemoved) + distance);
         }
 
         public static double NormalizedLevenshteinDistance(this string source, string target)
