@@ -21,7 +21,8 @@ namespace FuzzyString
             // Min: 0    Max: source.Length = target.Length
             if (options.Contains(FuzzyStringComparisonOptions.UseHammingDistance))
             {
-                comparisonResults.Add(Convert.ToDouble(source.HammingDistance(target)) / Convert.ToDouble(target.Length));
+                var maxLength = Math.Max(source.Length, target.Length);
+                comparisonResults.Add(Convert.ToDouble(source.HammingDistance(target)) / Convert.ToDouble(maxLength));
             }
 
             // Min: 0    Max: 1
@@ -66,16 +67,20 @@ namespace FuzzyString
 
             if (options.Contains(FuzzyStringComparisonOptions.UseLongestCommonSubsequence))
             {
+                var shorterStringLength = Math.Min(source.Length, target.Length);
+                var longestSubsequenceLength = source.LongestCommonSubsequence(target).Length;
                 comparisonResults.Add(1 -
-                                      Convert.ToDouble((source.LongestCommonSubsequence(target).Length)/
-                                                       Convert.ToDouble(Math.Min(source.Length, target.Length))));
+                                      Convert.ToDouble(longestSubsequenceLength)/
+                                                       Convert.ToDouble(shorterStringLength));
             }
 
             if (options.Contains(FuzzyStringComparisonOptions.UseLongestCommonSubstring))
             {
+                var longestSubstringLength = source.LongestCommonSubstring(target).Length;
+                var shorterStringLength = Math.Min(source.Length, target.Length);
                 comparisonResults.Add(1 -
-                                      Convert.ToDouble((source.LongestCommonSubstring(target).Length)/
-                                                       Convert.ToDouble(Math.Min(source.Length, target.Length))));
+                                      Convert.ToDouble(longestSubstringLength)/
+                                                       Convert.ToDouble(shorterStringLength));
             }
 
             // Min: 0    Max: 1
